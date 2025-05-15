@@ -98,10 +98,10 @@ python manage.py createsuperuser
 ## Примечание: Все запросы требуют аутентификации пользователя
 ##Рекомендуется использовать веб-интерфейс для ввода и анализа данных, а также отслеживать поведение системы через логи
 
-Создание транзакции (POST /api/transactions/): http://127.0.0.1:8000/api/transactions/
-Пополнение/списание баланса (POST /api/topup/): http://127.0.0.1:8000/api/topup/?amount=1000.00
-Очистка транзакций (POST /api/clear-transactions/): http://127.0.0.1:8000/api/clear-transactions/
-Текущая статистика (GET /api/user-stats/): http://127.0.0.1:8000/api/user-stats/
-Общая статистика трат (GET /api/spending-stats/): http://127.0.0.1:8000/api/spending-stats/?from=2024-11-01&to=2024-11-07
-Детальная статистика (GET /api/users/<id>/stats/): http://127.0.0.1:8000/api/users/1/stats/?from=2024-11-01&to=2024-11-07
+Создание транзакции (POST /api/transactions/): http://127.0.0.1:8000/api/transactions/  
+Пополнение/списание баланса (POST /api/topup/): http://127.0.0.1:8000/api/topup/?amount=1000.00  
+Очистка транзакций (POST /api/clear-transactions/): http://127.0.0.1:8000/api/clear-transactions/  
+Текущая статистика (GET /api/user-stats/): http://127.0.0.1:8000/api/user-stats/  
+Общая статистика трат (GET /api/spending-stats/): http://127.0.0.1:8000/api/spending-stats/?from=2024-11-01&to=2024-11-07  
+Детальная статистика (GET /api/users/<id>/stats/): http://127.0.0.1:8000/api/users/1/stats/?from=2024-11-01&to=2024-11-07  
 
