@@ -18,21 +18,7 @@ Transaction Service — это мини-сервис на Python/Django для �
 
 ## 📁 Структура проекта
 
-transaction_service/
-├── adminStyles/              # Стили для админки
-├── api/                      # API-приложение (использует Django REST Framework)
-├── logs/                     # Логи 
-├── mainapp/                  # Django-приложение (веб-интерфейс)
-│   ├── models.py             # Модели UserProfile и Transaction
-│   ├── views.py              # Обработчики запросов
-│   ├── static/mainapp/       # CSS, JS, изображения
-│   └── templates/mainapp/    # HTML-шаблоны
-├── media/                    # Загруженные файлы 
-├── transaction_service/      # Настройки проекта (settings, urls)
-├── .env                      # Переменные окружения 
-├── db.sqlite3                # SQLite база (не добавлен в Git)
-├── manage.py                 # Запуск Django
-└── requirements.txt          # Зависимости проекта
+<pre> ```plaintext transaction_service/ ├── adminStyles/ # Стили для админки ├── api/ # API-приложение (использует Django REST Framework) ├── logs/ # Логи ├── mainapp/ # Django-приложение (веб-интерфейс) │ ├── models.py # Модели UserProfile и Transaction │ ├── views.py # Обработчики запросов │ ├── static/mainapp/ # CSS, JS, изображения │ └── templates/mainapp/ # HTML-шаблоны ├── media/ # Загруженные файлы ├── transaction_service/ # Настройки проекта (settings, urls) ├── .env # Переменные окружения ├── db.sqlite3 # SQLite база (не добавлен в Git) ├── manage.py # Запуск Django └── requirements.txt # Зависимости проекта ``` </pre>
 
 ---
 
