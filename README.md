@@ -34,35 +34,37 @@ transaction_service/
 ├── db.sqlite3                # SQLite база (не добавлен в Git)
 ├── manage.py                 # Запуск Django
 └── requirements.txt          # Зависимости проекта
-
+```
 ---
 
 ## ⚙️ Установка и запуск
 
 ### 1. Клонировать репозиторий
 git clone git@github.com:EvgK-dev/transaction_service.git
+
 Или, если SSH не настроен:
+
 git clone https://github.com/EvgK-dev/transaction_service.git
 
 ### 2. Перейти в каталог проекта
 cd transaction_service
 
 ### 3. Создать и активировать виртуальное окружение 
-Windows: 
-python -m venv venv
+Windows:  
+python -m venv venv  
 .\venv\Scripts\activate
 
-Linux/macOS: 
-python3 -m venv venv
-source venv/bin/activate
+Linux/macOS:  
+python3 -m venv venv  
+source venv/bin/activate  
 
 ### 4. Установить зависимости
 pip install -r requirements.txt
 
 ### 5. Применить миграции
-python manage.py migrate
-или полностью:
-python manage.py makemigrations
+python manage.py migrate  
+или полностью:  
+python manage.py makemigrations  
 python manage.py migrate
 
 ### 6. Запустить сервер разработки
@@ -75,7 +77,7 @@ http://127.0.0.1:8000/
 http://127.0.0.1:8000/admin/
 
 ### 9. Создать суперпользователя (админа)
-python manage.py createsuperuser
+python manage.py createsuperuser  
 Укажите логин, email и пароль по запросу в терминале.
 
 ---
