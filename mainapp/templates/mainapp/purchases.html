@@ -1,0 +1,119 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="purchases-container" {% if user.is_authenticated %}data-user-id="{{ user.id }}"{% else %}data-user-id="null"{% endif %}>
+    <h2 class="section-header">Транзакции</h2>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message message-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="dashboard-grid">
+        <div class="user-info-card">
+            <h3 class="card-header">Информация о пользователе</h3>
+            <div class="user-info">
+                <div class="user-info-item">
+                    <span class="user-info-label">Имя пользователя</span>
+                    <span class="user-info-value">{{ user.username }}</span>
+                </div>
+                <div class="user-info-item">
+                    <span class="user-info-label">Дневной лимит</span>
+                    <span class="user-info-value">{{ user.userprofile.daily_limit }} ₽</span>
+                </div>
+                <div class="user-info-item">
+                    <span class="user-info-label">Недельный лимит</span>
+                    <span class="user-info-value">{{ user.userprofile.weekly_limit }} ₽</span>
+                </div>
+                <div class="user-info-item">
+                    <span class="user-info-label">Баланс</span>
+                    <span class="user-info-value" id="balance">{{ user.userprofile.balance }} ₽</span>
+                </div>
+                <div class="user-info-item">
+                    <span class="user-info-label">Потрачено за день</span>
+                    <span class="user-info-value" id="daily-spent">0.00 ₽</span>
+                </div>
+                <div class="user-info-item">
+                    <span class="user-info-label">Потрачено за неделю</span>
+                    <span class="user-info-value" id="weekly-spent">0.00 ₽</span>
+                </div>
+            </div>
+            <div class="user-info-actions">
+                <form class="balance-form" method="POST">
+                    {% csrf_token %}
+                    <label for="topup-amount" class="action-label">Сумма изменения баланса (₽)</label>
+                    <input type="number" id="topup-amount" name="amount" class="action-input" value="500.00" step="0.01" min="-99999999.99" max="99999999.99" required>
+                    <button type="submit" class="action-btn action-btn--topup">Изменить баланс</button>
+                </form>
+                <button class="action-btn action-btn--clear" id="clear-transactions">Очистить траты</button>
+            </div>
+        </div>
+
+        <div class="stats-card">
+            <h3 class="card-header">Статистика трат</h3>
+            <div class="stats-table">
+                <div class="stats-row">
+                    <span class="stats-label">Общая сумма трат</span>
+                    <span class="stats-value" id="total-spent">0.00 ₽</span>
+                </div>
+                <div class="stats-row">
+                    <span class="stats-label">По категориям</span>
+                    <span class="stats-value" id="by-category">-</span>
+                </div>
+                <div class="stats-row">
+                    <span class="stats-label">По дням</span>
+                    <span class="stats-value" id="by-day">-</span>
+                </div>
+                <div class="stats-row">
+                    <span class="stats-label">Среднедневная сумма</span>
+                    <span class="stats-value" id="daily-average">0.00 ₽</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="transactions-grid">
+        {% for category_value, category_name in categories %}
+            <div class="transaction-card">
+                <div class="transaction-icon">
+                    {% if category_value == 'Food' %}
+                        <span class="icon">🍽️</span>
+                    {% elif category_value == 'Transport' %}
+                        <span class="icon">🚗</span>
+                    {% elif category_value == 'Entertainment' %}
+                        <span class="icon">🎮</span>
+                    {% elif category_value == 'Utilities' %}
+                        <span class="icon">💡</span>
+                    {% elif category_value == 'Other' %}
+                        <span class="icon">❓</span>
+                    {% endif %}
+                </div>
+                <h3 class="transaction-title">{{ category_name }}</h3>
+                <form method="POST" class="transaction-form" data-category="{{ category_value }}">
+                    {% csrf_token %}
+                    <input type="hidden" name="category" value="{{ category_value }}">
+                    <div class="form-group">
+                        <label for="amount-{{ category_value }}" class="form-label">Сумма (₽)</label>
+                        <input type="number" id="amount-{{ category_value }}" name="amount" class="form-input" required min="0" step="1" value="200">
+                    </div>
+                    <div class="form-group">
+                        <label for="currency-{{ category_value }}" class="form-label">Валюта</label>
+                        <input type="text" id="currency-{{ category_value }}" name="currency" class="form-input" value="RUB" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="timestamp-{{ category_value }}" class="form-label">Дата покупки</label>
+                        <input type="datetime-local" id="timestamp-{{ category_value }}" name="timestamp" class="form-input" required value="{% now 'Y-m-d\TH:i' %}">
+                    </div>
+                    <button type="submit" class="transaction-btn">Оплатить</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<script src="{% static 'mainapp/js/mainapp.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,29 @@
+# Python и Django
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Виртуальное окружение
+venv/
+
+# Локальная база данных SQLite
+db.sqlite3
+
+# Миграции Django
+*/migrations/*
+!*/migrations/__init__.py
+
+# Служебные файлы и каталоги
+*.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+*.bak
+
+# Локальные настройки и кэш
+*.cache
+*.egg-info/
+dist/
+build/

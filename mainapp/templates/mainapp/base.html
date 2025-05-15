@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Сервис Транзакций{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'mainapp/css/null.css' %}">
+    <link rel="stylesheet" href="{% static 'mainapp/css/mainapp.css' %}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header class="header-transaction">
+        <div class="container-transaction">
+            <h1 class="logo-transaction">💳 Транзакции Онлайн</h1>
+            <nav class="nav-transaction">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'purchases' %}" class="nav-link-transaction">Транзакции</a>
+                    <a href="{% url 'logout' %}" class="nav-link-transaction">Выйти</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="nav-link-transaction">Войти</a>
+                    <a href="{% url 'register' %}" class="nav-link-transaction">Регистрация</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-transaction">
+        <div class="container-transaction">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="footer-transaction">
+        <div class="container-transaction">
+            <p>© 2025 Сервис Транзакций</p>
+        </div>
+    </footer>
+</body>
+</html>
